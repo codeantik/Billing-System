@@ -1,0 +1,20 @@
+.homepage_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4% auto;
+
+}
+
+.homepage_info{
+   display: flex;
+   margin-top: 20%;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+}
+
+pre{
+  font-size: 20px;
+  font-weight: bolder;
+}

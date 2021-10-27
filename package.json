@@ -1,0 +1,44 @@
+{
+  "name": "react",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "7.14.6",
+    "@material-ui/core": "4.11.4",
+    "@material-ui/icons": "4.11.2",
+    "@progress/kendo-drawing": "1.13.7",
+    "@progress/kendo-licensing": "1.1.4",
+    "@progress/kendo-react-buttons": "^4.7.0",
+    "@progress/kendo-react-pdf": "4.7.0",
+    "@progress/kendo-theme-material": "3.34.0",
+    "@types/react": "17.0.11",
+    "emailjs-com": "^3.2.0",
+    "pdf-to-base64": "^1.0.3",
+    "prop-types": "15.7.2",
+    "qrcode": "^1.4.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "5.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

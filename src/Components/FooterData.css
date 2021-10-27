@@ -1,0 +1,21 @@
+.left_footer {
+  margin: 3.7vh 1vh;
+}
+.summary_section {
+  margin-top: 7vh;
+  float: right;
+  margin-right: 100px;
+}
+p {
+  color: gray;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  font-weight: bolder;
+}
+
+.total_amount {
+  padding-top: 4px;
+  font-style: italic;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,11 @@
+.data{
+  background-color: darkblue;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  width: 66%;
+  color: white;
+  font-weight: bolder;
+  display: flex;
+  justify-content: space-around;
+}
+

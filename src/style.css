@@ -1,0 +1,8 @@
+h1, p {
+  font-family: Lato;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
