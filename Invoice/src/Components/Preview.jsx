@@ -1,19 +1,22 @@
 import React, { useState, useRef } from 'react';
 import './Preview.css';
+import 'react-toastify/dist/ReactToastify.css';
 // import { PDFExport } from '@progress/kendo-react-pdf';
 import '@progress/kendo-theme-material/dist/all.css';
 import { Button } from '@progress/kendo-react-buttons';
 import emailjs from 'emailjs-com';
-import pdf2base64 from 'pdf-to-base64'
+// import pdf2base64 from 'pdf-to-base64'
 import QRCode from 'qrcode'
 import { useHistory } from 'react-router';
 import { drawDOM, exportPDF } from "@progress/kendo-drawing";
+import StripeCheckout from 'react-stripe-checkout';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Preview(props) {
   const pdfExportComponents = useRef(null);
   const { term, status } = props.invoicestatus;
   const [pdf, setPdf] = useState()
-  const [base64, setBase64] = useState()
+  // const [base64, setBase64] = useState()
   const [qr, setQr] = useState()
   const {
     fullName,
@@ -26,25 +29,47 @@ export default function Preview(props) {
 
   const history = useHistory()
 
+  const [product, setProduct] = useState({
+    name: 'Invoice Payment',
+    price: props.totalAmount,
+    productBy: 'codeantik',
+  })
+
+  const makePayment = token => {
+    const body = {
+      token,
+      product,
+    }
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+
+    return fetch('http://localhost:8282/payment', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body)
+    }).then(response => {
+      console.log('Response:', response)
+      const { status } = response
+      console.log('Status:', status)
+      if (status === 200) {
+        toast("Success! Check email for details", { type: "success" });
+      } else {
+        toast("Something went wrong", { type: "error" });
+      }
+    })
+    .catch(err => {
+      console.log('Error:', err)
+    })
+
+  
+    
+  }
+
   const handlePdf = () => {
     if(invoiceId == "null" || email == "null" || fullName == "null" ){
       alert("Please fill required data!!!");
     } else {
-      // setPdf(pdfExportComponents.current)
-      // console.log(pdf)
-      // pdf2base64(pdf)
-      //   .then(
-      //       (response) => {
-      //           console.log(response); //cGF0aC90by9maWxlLmpwZw==
-      //           setBase64(response)
-      //       }
-      //   )
-      //   .catch(
-      //       (error) => {
-      //           console.log(error); //Exepection error....
-      //       }
-      //   )
-
       drawDOM(pdfExportComponents.current, {
         paperSize: "A4",
       })
@@ -93,6 +118,7 @@ export default function Preview(props) {
   return (
     <>
       {/* <PDFExport ref={pdfExportComponents} paperSize="auto"> */}
+        <ToastContainer />
         <div className="Preview_page" ref={pdfExportComponents}>
           <div className="Preview_content">
             <h1>Invoice</h1>
@@ -171,6 +197,19 @@ export default function Preview(props) {
         <Button secondary={true} onClick={sendToEmail}>
           Send To Email
         </Button>
+        <StripeCheckout
+          stripeKey="pk_test_51JpSl4SDlaRN0HjnV9IBrtMNAdWetx1wx8F9DubXAgFzX4K8vMtTb9iOBZ6rMY0oyG79ttVDd43AnV4hsNHTIDvJ00fs1OtSAn"
+          token={makePayment}
+          name="Pay the inovice amount"
+          amount={props.totalAmount * 100}
+          currency="INR"
+          shippingAddress
+          billingAddress
+        >
+          <button className="btn blue">
+            Pay Now <span className="white-text">{props.totalAmount}</span>
+          </button>
+        </StripeCheckout>
       </div>
     </>
   );

@@ -44,6 +44,7 @@ export default function Items({
     setData([...data, userTemplate]);
     updateAmount()
   };
+  
 
   const removeItem = index => {
     // const filterData = [...data];

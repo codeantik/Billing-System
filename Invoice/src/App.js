@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function App() {
   const userTemplate = { item: '', qty: '', rate: '' };
+  
 
   const userData = {
     fullName: 'null',

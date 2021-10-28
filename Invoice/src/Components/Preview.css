@@ -62,6 +62,7 @@ p {
 }
 .invoice_status {
   margin-top: 3vh;
+  font-size: 2em;
 }
 .invoice_status > h4 {
   padding-top: 19px;
@@ -75,4 +76,7 @@ p {
 }
 .summary_title {
   padding-bottom: 8px;
+}
+.total_amount {
+  font-size: 2em;
 }
