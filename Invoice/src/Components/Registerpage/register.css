@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
+
+.register-page-container {
+  background: url('https://i.ibb.co/QQnGvBM/background-gradient-05.png')
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: contrast(100px);
+  height: 100vh;
+  overflow: hidden;
+  color: #007090;
+}
+
+.register {
+  width:  70%;
+  height: 80%;
+  background-color: whitesmoke;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+  /* transform: scale(1.1); */
+}
+
+.left {
+  width: 45%;
+  height: 100%;
+  background: #007090 !important;
+  background-size: cover;
+  opacity: 1;
+}
+
+.right {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 55%;
+  height: 100%;
+  background-color: white;
+}
+
+.right h1 {
+  font-weight: 700;
+  font-size: 2.5em;
+  margin: 20px auto;
+  width: 100%;
+  color: #007090;
+  justify-self: center
+}
+
+.right form.register-details p {
+  font-size: 1.5em;
+  margin-left: 47px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #007090 !important;
+}
+
+.right form.register-details input {
+  width: 80%;
+  margin-left: 50px;
+  margin: 0 auto;
+  padding: 15px 5px;
+  outline: none;
+  margin-bottom: 15px;
+  border: 1px solid #007090;
+}
+
+form {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.register-button {
+  margin: 0 auto;
+  font-size: 1.1em;
+  margin-top: 15px;
+  font-weight: 500;
+  border: 2px solid #007090;
+  background: #007090;
+  color: white;
+  padding: 7px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+
+.register-button:hover {
+  background: white;
+  color: #007090;
+}
+
+/* .register-button:active{
+  position: relative;
+  top: 1px;
+} */
+
+
+.register-page-create-account {
+  margin: 20px auto;
+}
+
+@media screen and (min-width: 735px) {
+  .register {
+    margin-top: 5%;
+    align-items: center;
+    place-content: center;
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .register {
+    width: 60%;
+  }
+}
+
+/* @media screen and (max-width: 735px) {
+  .register-page-container{
+    height: 100vh;
+  }
+  .register {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 80%;
+    transform: none;
+  }
+  .register > h1 {
+    font-size: 24px;
+  }
+  .register-detalis {
+    margin: 30px;
+  }
+  .register-detalis > p {
+    font-size: 14px;
+    margin-top: 7px;
+  }
+  .register-detalis > input {
+    margin-top: 5px;
+    padding: 13px;
+    font-size: 12px;
+  }
+
+  .forgot-password {
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+  .register-button {
+    padding: 10px 25px 10px 25px;
+    font-size: 15px;
+    margin-top: 7%;
+
+  }
+  .register-page-create-account {
+    font-size: 12px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+} */

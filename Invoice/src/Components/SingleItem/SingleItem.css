@@ -1,0 +1,92 @@
+.Preview_page {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    height: auto;
+  }
+  
+  .Preview_content {
+    width: 100%;
+    margin: 50px auto;
+    transform: scale3d(2);
+    padding: 2vh;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+    height: auto;
+    border-radius: 6px;
+    border-top: 2px solid palevioletred;
+  }
+  h1 {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  text {
+    font-weight: 500;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  .tag {
+    padding-bottom: 6px;
+  }
+  
+  .left_right_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Preview_items {
+    display: flex;
+    width: 66%;
+    align-items: center;
+    margin: 5vh auto 0 auto;
+  }
+  
+  .Preview_items_details {
+    border: 1px solid grey;
+    display: flex;
+    width: 66%;
+    margin: 4px auto;
+    justify-content: space-around;
+    align-items: center;
+  }
+  p {
+    width: 100px;
+    padding: 2px;
+  }
+  .Preview_download_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .invoice_status {
+    margin-top: 3vh;
+    font-size: 2em;
+  }
+  .invoice_status > h4 {
+    padding-top: 19px;
+  }
+  .summary_text {
+    padding-left: 4px;
+    font-weight: 480;
+  }
+  .status_text {
+    padding-left: 5.5px;
+  }
+  .summary_title {
+    padding-bottom: 8px;
+  }
+  .total_amount {
+    font-size: 2em;
+  }
+  
+  .pay-btn {
+    background: rgb(91, 195, 236);
+    padding: 10px 15px;
+  }
+  
+  .white-text {
+    color: white;
+  }

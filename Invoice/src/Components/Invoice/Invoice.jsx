@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import './Invoice.css';
-import Items from './Items';
+import Items from '../Items/Items';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+// import { v4 as uuidv4 } from 'uuid';
+import uniqid from 'uniqid';
 
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '30ch'
-    }
-  }
+      width: '30ch',
+    },
+  },
 }));
+
+
 
 export default function Invoice({
   data,
@@ -28,12 +32,26 @@ export default function Invoice({
   }) 
 {
   const classes = useStyles();
+  const [invoiceId, setInvoiceId] = useState(userInfo?.invoiceId);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setUserInfo({...userInfo, [name]: value });
   };
+
+  // const handleInvoice = () => {
+  //   setUserInfo({...userInfo, [invoiceId]: invoiceId });
+  //   console.log(invoiceId, userInfo);
+  // }
+
+
+  // useEffect(() => {
+  //   const id = uniqid();
+  //   setInvoiceId(id);
+  //   console.log(invoiceId);
+  //   handleInvoice();
+  // }, [])
 
   return (
     <>
@@ -69,13 +87,13 @@ export default function Invoice({
                 />
 
                 <TextField
+                  disabled
                   name="invoiceId"
                   id="outlined-email"
                   label="Invoice Id"
-                  required
-                  type="number"
+                  // type="number"
                   variant="outlined"
-                  onChange={handleChange}
+                  value={invoiceId}
                 />
 
                 <TextField
@@ -85,6 +103,7 @@ export default function Invoice({
                   type="date"
                   variant="outlined"
                   onChange={handleChange}
+                  focused
                 />
 
                 <TextField
@@ -94,6 +113,7 @@ export default function Invoice({
                   type="date"
                   variant="outlined"
                   onChange={handleChange}
+                  focused
                 />
               </div>
 
