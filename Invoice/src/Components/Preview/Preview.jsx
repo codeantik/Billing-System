@@ -1,11 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './Preview.css';
 import 'react-toastify/dist/ReactToastify.css';
-// import { PDFExport } from '@progress/kendo-react-pdf';
 import '@progress/kendo-theme-material/dist/all.css';
 import { Button } from '@progress/kendo-react-buttons';
 import emailjs from 'emailjs-com';
-// import pdf2base64 from 'pdf-to-base64'
 import QRCode from 'qrcode'
 import { useHistory } from 'react-router';
 import { drawDOM, exportPDF } from "@progress/kendo-drawing";
@@ -16,7 +14,6 @@ export default function Preview(props) {
   const pdfExportComponents = useRef(null);
   const { term, status } = props.invoicestatus;
   const [pdf, setPdf] = useState()
-  // const [base64, setBase64] = useState()
   const [qr, setQr] = useState()
   const {
     fullName,
@@ -28,6 +25,7 @@ export default function Preview(props) {
   } = props.userInfo;
 
   const history = useHistory()
+  console.log(props.data)
 
   const [product, setProduct] = useState({
     name: 'Invoice Payment',
@@ -35,7 +33,49 @@ export default function Preview(props) {
     productBy: 'codeantik',
   })
 
-  const makePayment = token => {
+  const handleRedirect = () => {
+    history.push('/')
+  }
+
+  const postInvoice = () => {
+    let invoice = {
+      name: fullName,
+      email: email,
+      company: companyName,
+      invoiceId: invoiceId,
+      invoiceStart: invoiceStart,
+      invoiceEnd: invoiceEnd,
+      status: status,
+      amount: props.totalAmount,
+      term: term,
+      items: props.data,
+    }
+
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+
+    return fetch('http://localhost:8282/invoices', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(invoice)
+    }).then(response => {
+        console.log('Response:', response)
+        const { status } = response
+        console.log('Status:', status)
+      if (status === 200) {
+          toast("Success! Sent to db", { type: "success" });
+      } else {
+          toast("Something went wrong", { type: "error" });
+      }
+    })
+    .catch(err => {
+      console.log('Error:', err)
+    })
+  }
+
+  const makePayment = (token) => {
+
     const body = {
       token,
       product,
@@ -45,24 +85,22 @@ export default function Preview(props) {
     }
 
     return fetch('http://localhost:8282/payment', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(body)
+        method: 'POST',
+        headers,
+        body: JSON.stringify(body)
     }).then(response => {
-      console.log('Response:', response)
-      const { status } = response
-      console.log('Status:', status)
+        console.log('Response:', response)
+        const { status } = response
+        console.log('Status:', status)
       if (status === 200) {
-        toast("Success! Check email for details", { type: "success" });
+          toast("Success! Payment completed!", { type: "success" });
       } else {
-        toast("Something went wrong", { type: "error" });
+          toast("Something went wrong", { type: "error" });
       }
     })
     .catch(err => {
       console.log('Error:', err)
     })
-
-  
     
   }
 
@@ -92,27 +130,55 @@ export default function Preview(props) {
           console.error(err)
         })
       // pdfExportComponents.current.save();
+
     }
   }
 
   const sendToEmail = () => {
     console.log('sendEmail')
-    // if(!pdf) return
+    postInvoice() // send data to database
+
     let templateParams = {
       toEmail: email,
       invoicePdf: pdf,
       QR: qr,
     }
-    // invoicePdf: `<a href="data:application/pdf;base64,${pdf}" target="_blank">pdf is the</a>`,
 
-    emailjs.send('service_lsvwxv9', 'template_97xok2b', templateParams, 'user_DjLVtsgqwmWG7WeLqg1iF')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
+    // send email through emailjs
+    // emailjs.send('service_lsvwxv9', 'template_97xok2b', templateParams, 'user_DjLVtsgqwmWG7WeLqg1iF')
+    // .then(function(response) {
+    //    console.log('SUCCESS!', response.status, response.text);
+    // }, function(error) {
+    //    console.log('FAILED...', error);
+    // });
     
-    // history.push("/")
+    // send email through nodemailer
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+
+    return fetch('http://localhost:8282/sendmail', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(templateParams)
+      }).then(response => {
+        console.log('Response:', response)
+        const { status } = response
+        console.log('Status:', status)
+        if (status === 200) {
+          toast("Success! Check email for details", { type: "success" });
+        } else {
+          toast("Something went wrong", { type: "error" });
+        }
+      })
+      .catch(err => {
+        console.log('Error:', err)
+      })
+
+
+      // redirect to home page
+      // history.push('/')
+
   }
 
   return (
@@ -144,16 +210,14 @@ export default function Preview(props) {
             </div>
 
             {props.data &&
-              props.data.map(product => {
+              props.data.map((product, index) => {
                 return (
-                  <>
-                    <div className="Preview_items_details">
-                      <p>{product.item}</p>
-                      <p>{product.qty}</p>
-                      <p>{product.rate}</p>
-                      <p>{product.qty * product.rate} </p>
-                    </div>
-                  </>
+                  <div className="Preview_items_details" key={index}>
+                    <p>{product.item}</p>
+                    <p>{product.qty}</p>
+                    <p>{product.rate}</p>
+                    <p>{product.qty * product.rate} </p>
+                  </div>
                 );
               })}
             <div className="invoice_status">
@@ -206,10 +270,13 @@ export default function Preview(props) {
           shippingAddress
           billingAddress
         >
-          <button className="btn blue">
+          <button className="pay-btn">
             Pay Now <span className="white-text">{props.totalAmount}</span>
           </button>
         </StripeCheckout>
+        <button className="home-btn" onClick={handleRedirect}>
+          Home
+        </button>
       </div>
     </>
   );

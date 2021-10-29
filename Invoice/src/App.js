@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import './style.css';
-import Homepage from './Components/Homepage';
-import Invoice from './Components/Invoice';
-import Preview from './Components/Preview';
+import Homepage from './Components/Homepage/Homepage';
+import Invoice from './Components/Invoice/Invoice';
+import Preview from './Components/Preview/Preview';
+import Login from './Components/Loginpage/Loginpage';
+import Register from './Components/Registerpage/Register';
+import SingleItem from './Components/SingleItem/SingleItem';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import uniqid from 'uniqid'
 
 export default function App() {
-  const userTemplate = { item: '', qty: '', rate: '' };
-  
-
+  const userTemplate = { item: '', qty: 0, rate: 0 };
   const userData = {
     fullName: 'null',
     email: 'null',
     companyName: 'null',
-    invoiceId: 'null',
+    invoiceId: uniqid(),
     invoiceStart: 'null',
     invoiceEnd: 'null'
   };
@@ -47,6 +49,15 @@ export default function App() {
               userInfo={userInfo}
               totalAmount={totalAmount}
             />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/invoices/:invoiceId">
+            <SingleItem />
           </Route>
           <Route exact path="/">
             <Homepage />

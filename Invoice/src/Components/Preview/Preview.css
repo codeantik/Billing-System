@@ -77,6 +77,26 @@ p {
 .summary_title {
   padding-bottom: 8px;
 }
-.total_amount {
+h2.total_amount {
   font-size: 2em;
+  width: 100%;
+  margin-left: 600px;
+  margin-top: -40px;
+}
+
+.pay-btn {
+  background: rgb(91, 195, 236);
+  padding: 10px 20px;
+  text-transform: capitalize;
+}
+
+.home-btn {
+  background: #38abc3;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-transform: capitalize;
+}
+
+.white-text {
+  color: white;
 }

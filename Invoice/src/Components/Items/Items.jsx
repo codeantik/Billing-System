@@ -11,14 +11,14 @@ import {
   IconButton,
   Button
 } from '@material-ui/core';
-import FooterData from './FooterData';
-import Preview from './Preview';
+import FooterData from '../FooterData/FooterData';
+import Preview from '../Preview/Preview';
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100vw',
     paddingTop: theme.spacing(5)
-  }
+  },
 }));
 
 export default function Items({
@@ -47,10 +47,6 @@ export default function Items({
   
 
   const removeItem = index => {
-    // const filterData = [...data];
-    // filterData.splice(index, 1);
-    // setData(filterData);
-    // setData(data.filter((item, idx) => idx != index))
     data.splice(index, 1);
     console.log(data)
     updateAmount(data)
@@ -132,7 +128,7 @@ export default function Items({
           </Grid>
         ))}
 
-        <Button variant="contained" color="secondary" onClick={addItems}>
+        <Button variant="contained" color="secondary" onClick={addItems} style={{ marginTop: '20px'}} >
           Add Item
         </Button>
       </Container>
