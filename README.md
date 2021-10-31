@@ -1,11 +1,12 @@
 # Billing-System
 
-Server URL-> https://billing-system-server.vercel.app/
+App URL --> https://billing-system-client.vercel.app/
+Server URL --> https://billing-system-server.vercel.app/
 
-/invoices -> returns all invoices 
+/invoices --> returns all invoices 
 
-/invoices/:invoiceId -> returns 1 inovice
+/invoices/:invoiceId --> returns one inovice
 
-/sendmail -> sends mail to the email provided
+/sendmail --> sends mail to the email provided
 
-/payment -> does payment for the inovice
+/payment --> does payment for the inovice
