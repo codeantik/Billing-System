@@ -176,14 +176,11 @@ export default function Preview(props) {
       })
 
 
-      // redirect to home page
-      // history.push('/')
 
   }
 
   return (
     <>
-      {/* <PDFExport ref={pdfExportComponents} paperSize="auto"> */}
         <ToastContainer />
         <div className="Preview_page" ref={pdfExportComponents}>
           <div className="Preview_content">
@@ -252,7 +249,6 @@ export default function Preview(props) {
             </div>
           </div>
         </div>
-      {/* </PDFExport> */}
 
       <div className="Preview_download_btn">
         <Button primary={true} onClick={handlePdf}>
