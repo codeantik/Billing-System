@@ -5,7 +5,6 @@ import './Invoice.css';
 import Items from '../Items/Items';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-// import { v4 as uuidv4 } from 'uuid';
 import uniqid from 'uniqid';
 
 const useStyles = makeStyles(theme => ({
@@ -39,19 +38,6 @@ export default function Invoice({
     const value = e.target.value;
     setUserInfo({...userInfo, [name]: value });
   };
-
-  // const handleInvoice = () => {
-  //   setUserInfo({...userInfo, [invoiceId]: invoiceId });
-  //   console.log(invoiceId, userInfo);
-  // }
-
-
-  // useEffect(() => {
-  //   const id = uniqid();
-  //   setInvoiceId(id);
-  //   console.log(invoiceId);
-  //   handleInvoice();
-  // }, [])
 
   return (
     <>
@@ -91,7 +77,6 @@ export default function Invoice({
                   name="invoiceId"
                   id="outlined-email"
                   label="Invoice Id"
-                  // type="number"
                   variant="outlined"
                   value={invoiceId}
                 />

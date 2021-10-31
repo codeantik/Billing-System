@@ -72,8 +72,6 @@ export default function FooterData({ invoicestatus, setInvoiceStatus, totalAmoun
           </TextField>
 
           <div className="summary_section">
-            {/* <h3>Invoice Summary</h3> */}
-            {/* <p> SubTotal : $100 </p> */}
             <h2 className="total_amount">Total : {totalAmount} INR </h2>
           </div>
         </form>

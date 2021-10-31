@@ -3,7 +3,6 @@ import './Preview.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@progress/kendo-theme-material/dist/all.css';
 import { Button } from '@progress/kendo-react-buttons';
-import emailjs from 'emailjs-com';
 import QRCode from 'qrcode'
 import { useHistory } from 'react-router';
 import { drawDOM, exportPDF } from "@progress/kendo-drawing";
@@ -55,7 +54,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('http://localhost:8282/invoices', {
+    return fetch('https://billing-system-server.vercel.app/invoices', {
         method: 'POST',
         headers,
         body: JSON.stringify(invoice)
@@ -84,7 +83,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('http://localhost:8282/payment', {
+    return fetch('https://billing-system-server.vercel.app/payment', {
         method: 'POST',
         headers,
         body: JSON.stringify(body)
@@ -157,7 +156,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('http://localhost:8282/sendmail', {
+    return fetch('https://billing-system-server.vercel.app/sendmail', {
         method: 'POST',
         headers,
         body: JSON.stringify(templateParams)

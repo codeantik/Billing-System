@@ -1,6 +1,6 @@
 import './DashboardItem.css'
 
-export default function DashboardItem({ email = 'testcodeantik@gmail.com', status = 'outstanding', amount = '23350', invoiceId = '112343u43u' }) {
+export default function DashboardItem({ email, status, amount, invoiceId }) {
     return (
         <div className="dashboard-item">
             <h2 style={{ color: '#000'}}>Created an invoice to <u style={{color: '#0ac'}}>{email}</u></h2>
