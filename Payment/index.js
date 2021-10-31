@@ -108,7 +108,7 @@ app.post('/sendmail', (req, res) => {
 
 
 
-// stripe payment
+// stripe payment route
 app.post('/payment', (req, res) => {
     const { product, token } = req.body;
     console.log('PRODUCT', product);
