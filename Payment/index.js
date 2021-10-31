@@ -81,10 +81,6 @@ app.get('/invoices', (req, res) => {
 // get details of an invoice
 app.get('/invoices/:invoiceId', (req, res) => {
     let id = req.params.invoiceId;
-    // Invoice.findById(id, (err, invoice) => {
-    //     if (err) return res.status(404).json({ message: err.message, type: 'danger' })
-    //     res.status(200).json({ invoice })
-    // });
     Invoice.findOne({ invoiceId: id }, (err, invoice) => {
         if (err) return res.status(404).json({ message: err.message, type: 'danger' })
         console.log(invoice)
