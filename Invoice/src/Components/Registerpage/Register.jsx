@@ -34,7 +34,7 @@ export default function Register() {
 
       const registerRequest = await axios
           .post(
-            'https://magnifionode-api.herokuapp.com/users/register',
+            'https://appleute-server.vercel.app/v1/auth/register',
             registerUserData
           )
           .then(data => {
