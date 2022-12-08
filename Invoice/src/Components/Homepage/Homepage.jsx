@@ -13,7 +13,7 @@ export default function Homepage() {
   const [invoices, setInvoices] = useState([])
 
   const fetchInvoices = async () => {
-    const response = await axios.get('https://billing-system-server.vercel.app/invoices')
+    const response = await axios.get('https://billing-system-server.onrender.com/invoices')
     console.log(response.data.invoices)
     setInvoices(response.data.invoices)
   }
