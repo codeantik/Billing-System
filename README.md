@@ -2,7 +2,7 @@
 
 App URL --> https://billing-system-client.vercel.app/
 
-Server URL --> https://billing-system-server.vercel.app/
+Server URL --> https://billing-system-server.onrender.com/
 
 /invoices --> returns all invoices 
 
