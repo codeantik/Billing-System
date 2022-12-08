@@ -10,7 +10,7 @@ function SingleItem() {
     const { invoiceId } = useParams();
 
     const fetchBill = async () => {
-        const response = await axios.get(`https://billing-system-server.vercel.app/invoices/${invoiceId}`)
+        const response = await axios.get(`https://billing-system-server.onrender.com/invoices/${invoiceId}`)
         console.log(response.data.invoice)
         setBill(response.data.invoice)
     }
