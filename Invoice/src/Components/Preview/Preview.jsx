@@ -54,7 +54,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('https://billing-system-server.vercel.app/invoices', {
+    return fetch('https://billing-system-server.onrender.com/invoices', {
         method: 'POST',
         headers,
         body: JSON.stringify(invoice)
@@ -83,7 +83,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('https://billing-system-server.vercel.app/payment', {
+    return fetch('https://billing-system-server.onrender.com/payment', {
         method: 'POST',
         headers,
         body: JSON.stringify(body)
@@ -156,7 +156,7 @@ export default function Preview(props) {
       'Content-Type': 'application/json'
     }
 
-    return fetch('https://billing-system-server.vercel.app/sendmail', {
+    return fetch('https://billing-system-server.onrender.com/sendmail', {
         method: 'POST',
         headers,
         body: JSON.stringify(templateParams)
