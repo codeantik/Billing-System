@@ -35,7 +35,7 @@ export default function Loginpage() {
       }
       
       const loginRequest = await axios
-        .post('https://magnifionode-api.herokuapp.com/users/login',
+        .post('https://appleute-server.vercel.app/v1/auth/login',
           loginUserData
         )
         .then(data => {
